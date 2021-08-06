@@ -55,6 +55,7 @@
         label.appendChild(checkbox);
         label.appendChild(document.createTextNode(` ${todo.text}`));
         label.appendChild(deleteButton);
+
         document.getElementById('allTodos').appendChild(label);
     }
 
