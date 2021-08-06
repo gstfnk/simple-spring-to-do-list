@@ -25,8 +25,6 @@
     });
 
     function createNewTodo(todo) {
-        const label = document.createElement('label');
-        label.classList.add('pure-checkbox');
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.checked = todo.done;
@@ -38,8 +36,25 @@
                     .then(updatedTodo => checkbox.checked = updatedTodo.done)
                     .catch(console.warn);
             });
+
+        const deleteButton = document.createElement('button');
+        deleteButton.classList.add('pure-button');
+        deleteButton.appendChild(document.createTextNode("Delete"));
+        deleteButton.addEventListener('click',
+            (event) => {
+                event.preventDefault();
+                const target = event.currentTarget as HTMLButtonElement;
+                fetch(`${TODO_API_URL}/${todo.id}`, {method: 'DELETE'})
+                    .then((response: Response) => {
+                        if (response.ok) target.parentElement.remove();
+                    })
+            });
+
+        const label = document.createElement('label');
+        label.classList.add('pure-checkbox');
         label.appendChild(checkbox);
         label.appendChild(document.createTextNode(` ${todo.text}`));
+        label.appendChild(deleteButton);
         document.getElementById('allTodos').appendChild(label);
     }
 
@@ -67,7 +82,7 @@
 
     function initWelcomeFormClick() {
         const welcomeForm: HTMLFormElement = document.getElementById('welcomeForm') as HTMLFormElement;
-        const name : HTMLInputElement = welcomeForm.elements.namedItem("name") as HTMLInputElement;
+        const name: HTMLInputElement = welcomeForm.elements.namedItem("name") as HTMLInputElement;
         const lang: HTMLInputElement = welcomeForm.elements.namedItem("lang") as HTMLInputElement
 
         document.getElementById('btn').addEventListener('click', (event) => {

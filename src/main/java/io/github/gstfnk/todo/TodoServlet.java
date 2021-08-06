@@ -37,4 +37,10 @@ class TodoServlet extends HttpServlet {
     Todo newTodo(@RequestBody Todo newTodo) {
         return repository.save(newTodo);
     }
+
+    @DeleteMapping("/{id}")
+    ResponseEntity<?> deleteEmployee(@PathVariable Integer id) {
+        repository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }
