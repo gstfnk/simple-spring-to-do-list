@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ULTIMATE TODO LIST</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css"
+          integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+    <script src="script.js" defer></script>
+</head>
+<body>
+<main style="width: 40%; margin: 0 auto">
+    <div id="welcome" style="text-align: center">
+        <h1>Introduce yourself</h1>
+    </div>
+    <form id="welcomeForm" class="pure-form pure-g pure-form-aligned">
+        <input class="pure-input-rounded pure-u-1" name="name" placeholder="name">
+        <fieldset id="langs" class="pure-u-1 pure-control-group">Loading...</fieldset>
+        <button id="btn" class="pure-button pure-button-primary pure-u-1">Submit</button>
+    </form>
+    <form id="todoForm" class="pure-form" style="display: none; text-align: center">
+        <fieldset>
+            <input id="todoText" class="pure-input-rounded pure-input-2-3" placeholder="new TODO">
+            <button id="addTodo" class="pure-button pure-button-primary">+</button>
+        </fieldset>
+        <fieldset id="allTodos"></fieldset>
+    </form>
+</main>
+</body>
+</html>
