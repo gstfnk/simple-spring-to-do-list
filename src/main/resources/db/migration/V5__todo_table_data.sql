@@ -1,2 +1,1 @@
-insert into todos (text, done) values ('Mock1', 1);
-insert into todos (text, done) values ('Mock2', 0);
+insert into todos (text, done) values ('Your first Todo in amazing Todos!', 0);
