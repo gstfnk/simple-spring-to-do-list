@@ -26,16 +26,18 @@ class TodoServlet extends HttpServlet {
     }
 
     @PutMapping("/{id}")
-    Todo toggleTodo(@PathVariable Integer id) {
-        Todo todo = repository.findById(id).get();
-        todo.setDone(!todo.getDone());
-        repository.save(todo);
-        return todo;
+    ResponseEntity<Todo> toggleTodo(@PathVariable Integer id) {
+        var todo = repository.findById(id);
+        todo.ifPresent(todo1 -> {
+            todo1.setDone(!todo1.getDone());
+            repository.save(todo1);
+        });
+        return todo.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    Todo newTodo(@RequestBody Todo newTodo) {
-        return repository.save(newTodo);
+    ResponseEntity<Todo> newTodo(@RequestBody Todo newTodo) {
+        return ResponseEntity.ok(repository.save(newTodo));
     }
 
     @DeleteMapping("/{id}")
